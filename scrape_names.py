@@ -18,8 +18,11 @@ numberOfCompanies = 0
 i = 1
 
 values = table.findAll("td")
-while(numberOfCompanies < 504):
-	allNames.append(values[i].text)
+while(numberOfCompanies < 510):
+	try:
+		allNames.append(values[i].text)
+	except:
+		pass
 	i += 8
 	numberOfCompanies += 1
 
