@@ -2,32 +2,6 @@ import wikipedia
 from spacy.en import English
 import Company
 
-base = {}
-
-#TODO populate base dict with cases
-base['location'] = []
-base['industry'] = []
-base['time'] = []
-base['products'] = []
-
-companies = []
-
-with open("names.txt") as file:
-    for line in file.readlines():
-        companies.append(line)
-
-for c in companies:
-    print c
-
-pages = []
-
-for comp in companies:
-    try:
-        pages.append(wikipedia.page(comp))
-    except wikipedia.exceptions.DisambiguationError:
-        query = wikipedia.search(each)
-        pages.append(wikipeida.page(query[0]))
-
 #function to get category max
 def cat_max(cat_entry):
     cat_entry = unicode(cat_entry)
@@ -45,8 +19,36 @@ def cat_max(cat_entry):
 
     return sim_cat
 
-companies_obj = []
+base = {}
 
+#TODO populate base dict with cases
+base['location'] = []
+base['industry'] = []
+base['time'] = []
+base['products'] = []
+
+companies = []
+nlp = English()
+
+with open("names.txt") as file:
+    for line in file.readlines():
+        companies.append(line)
+
+for c in companies:
+    print c
+
+pages = []
+
+for comp in companies:
+    try:
+        pages.append(wikipedia.page(comp))
+    except wikipedia.exceptions.DisambiguationError:
+        query = wikipedia.search(comp)
+        pages.append(wikipedia.page(query[0]))
+    except wikipedia.exceptions.PageError:
+        pass
+
+companies_obj = []
 for company in pages:
     companies_obj.append(Company(comany.name))
     for category in company.categories:
