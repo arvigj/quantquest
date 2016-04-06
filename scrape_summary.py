@@ -1,12 +1,7 @@
-#Team: HackALink
-#Names of the S&P 500 Companies --> URLS
-#Source: Wikipedia
-#Number of Companies more than 500 (504)
-#Page Version Date --> 28 December 2015
-
 import bs4
 from bs4 import BeautifulSoup
 import urllib2
+import wikipedia
 
 wiki = "https://en.wikipedia.org/w/index.php?title=List_of_S%26P_500_companies&oldid=697200065"
 page = urllib2.urlopen(wiki)
@@ -26,5 +21,8 @@ while(numberOfCompanies < 510):
 	i += 8
 	numberOfCompanies += 1
 
+
+ny = wikipedia.page("New York")
 for each in allUrls:
-	print(each)
+	ny.url = "https://en.wikipedia.org/"+str(each)
+	print(ny.summary)
