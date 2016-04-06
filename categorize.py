@@ -16,16 +16,20 @@ def cat_max(cat_entry):
                 label_max = check
         if label_max > sim_val:
             sim_cat = label
-
+            sim_val = label_max
+    #val = 0.5 #confidence level
+    #if (sim_val < val):
+    #   return 'misc'
     return sim_cat
 
 base = {}
 
 #TODO populate base dict with cases
-base['location'] = []
-base['industry'] = []
-base['time'] = []
-base['products'] = []
+base['location'] = ["Based in","Located in"]
+base['industry'] = ["Technology Company","Financial","Consulting","Manufacturing"]
+base['time'] = ["Established in","Created in"]
+base['products'] = ["Produces","Creates","Develops","Provides"]
+base['misc'] = []
 
 companies = []
 nlp = English()
