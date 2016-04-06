@@ -1,13 +1,13 @@
 import wikipedia
 from spacy.en import English
-import Company
+from Company import Company
 
 #function to get category max
 def cat_max(cat_entry):
     cat_entry = unicode(cat_entry)
     sim_val = 0
     sim_cat = ''
-    for label in base.keys:
+    for label in base.keys():
         label_max = 0
         for case in label:
             case = unicode(case)
@@ -50,7 +50,7 @@ for comp in companies:
 
 companies_obj = []
 for company in pages:
-    companies_obj.append(Company(comany.name))
+    companies_obj.append(Company(company.title))
     for category in company.categories:
         label = cat_max(category)
         companies_obj[-1].add_parameter(label,category)
