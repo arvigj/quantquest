@@ -31,23 +31,19 @@ for each in allNames:
 for each in allNames:
 	try:
 		page = wikipedia.page(each)
-		for url in page.references:
-			o = urlparse(url)
-			if(o.netloc not in dicRef[each]):
-				dicRef[each].append(o.netloc)
+		for url in page.links:
+			dicRef[each].append(url)
 	except:
 		try:
 			a = wikipedia.search(each)
 			page = wikipedia.page(a[0])
 
-			for url in page.references:
-				o = urlparse(url)
-				if(o.netloc not in dicRef[each]):
-					dicRef[each].append(o.netloc)
+			for url in page.links:
+				dicRef[each].append(url)
 		except:
 			dicRef[each].append("NA")
 	counter = counter + 1
 
 import json
-with open('references.json', 'w') as refer_files:
+with open('links.json', 'w') as refer_files:
 	json.dump(dicRef, refer_files)
