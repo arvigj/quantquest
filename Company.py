@@ -10,10 +10,11 @@ class Company:
 		self.data["industry"] 	= []
 		self.data["time"]	  	= []
 		self.data["products"] 	= []
-		self.data["refrences"] 	= []
+		self.data["references"] 	= []
 
-	def add_paramter(self, name_of_para, value_of_para):
+	def add_parameter(self, name_of_para, value_of_para):
 		try:
 			(self.data[name_of_para]).append(value_of_para)
 		except:
 			self.data[name_of_para] = [value_of_para]
+

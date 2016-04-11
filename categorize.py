@@ -3,6 +3,7 @@ from spacy.en import English
 from Company import Company
 import sys
 
+
 #function to get category max
 def cat_max(cat_entry):
     cat_entry = unicode(cat_entry)
@@ -58,6 +59,6 @@ for company in pages:
     companies_obj.append(Company(company.title))
     for category in company.categories:
         label = cat_max(category)
-        companies_obj[-1].add_parameter(label,category)
+        companies_obj[0].add_parameter(label,category)
 
 
