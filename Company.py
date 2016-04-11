@@ -9,8 +9,6 @@ class Company:
 		self.data["location"] 	= []
 		self.data["industry"] 	= []
 		self.data["time"]	  	= []
-		self.data["products"] 	= []
-		self.data["references"] 	= []
 
 	def add_parameter(self, name_of_para, value_of_para):
 		try:
