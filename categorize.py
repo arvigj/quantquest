@@ -1,6 +1,7 @@
 import wikipedia
 from spacy.en import English
 from Company import Company
+import sys
 
 #function to get category max
 def cat_max(cat_entry):
@@ -34,7 +35,7 @@ base['misc'] = []
 companies = []
 nlp = English()
 
-with open("names.txt") as file:
+with open(sys.argv[1]) as file:
     for line in file.readlines():
         companies.append(line)
 
