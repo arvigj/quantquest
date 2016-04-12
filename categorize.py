@@ -53,8 +53,8 @@ pages = []
 numOfComp = 0
 for comp in companies:
     print(numOfComp)
-    # if(numOfComp == 50):
-    #     break
+    if(numOfComp == 4):
+        break
     try:
         if("Allergan plc" == comp):
             pages.append(wikipedia.page("Allergan, Inc."))
@@ -65,7 +65,7 @@ for comp in companies:
         pages.append(wikipedia.page(query[0]))
     except wikipedia.exceptions.PageError:
         pass
-    # numOfComp = numOfComp + 1
+    numOfComp = numOfComp + 1
 
 companies_obj = []
 for company in pages:
@@ -86,7 +86,12 @@ for each in companies_obj:
         if(values == 'industry'):
             compIndDic[each.name] = each.data[values]
 
+import json
+with open('industry.json', 'r') as old_refer_files:
+    oldIndDic = json.load(old_refer_files)
+
+oldIndDic.update(compIndDic)
 
 import json
 with open('industry.json', 'w') as refer_files:
-    json.dump(compIndDic, refer_files)
+    json.dump(oldIndDic, refer_files)
