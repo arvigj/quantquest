@@ -37,8 +37,6 @@ class Graph:
                 else:
                     i.add_neighbor(j,j.link_list)
     def return_links(self,node_1, node_2):
-        if node_1 == node_2:
-            return
         n2 = 0
         for i in self.comp_list:
             if node_1 == i.name:
@@ -46,6 +44,8 @@ class Graph:
                 continue
             if node_2 == i.name:
                 n2 = i
+        if node_1 == node_2:
+            return n1.link_list.keys()
         return n1.get_neighbor_links(n2)
 
 
