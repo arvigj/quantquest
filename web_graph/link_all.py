@@ -4,8 +4,7 @@ import sys
 import numpy as np
 
 from tsne import tsne
-from pylab import Plot
-from numpy import Math
+#from pylab import Plot
 
 from graph import Node, Graph
 
@@ -36,7 +35,7 @@ for i in xrange(0,num):
             a = []
         matrix[i].append(len(a))
 
-mat = np.matrix(matrix,dtype=float)
+mat = np.array(matrix,dtype=float)
 
 #print type(mat)
 #print type(mat[0])
@@ -45,7 +44,7 @@ mat = np.matrix(matrix,dtype=float)
 for i in xrange(0,num):
     for j in xrange(0,num):
         if i!=j:
-            mat[i,j] /= mat[i,i]
+            mat[i][j] /= mat[i][i]
 
 #remove 1's before normalization
 #for i in xrange(0,num):
@@ -58,18 +57,18 @@ def norm(array, identity_index, arr_len):
     for i in xrange(0,arr_len):
         if i == identity_index:
             continue
-        length += array[0,i]
+        length += array[i]
     for i in xrange(0,arr_len):
         if i == identity_index:
             continue
-        array[0,i] = array[0,i]/length
+        array[i] = array[i]/length
     return array
 
 
 
 #insert 1's after normalization
 for i in xrange(0,num):
-    mat[i,i] = 1
+    mat[i][i] = 1
     mat[i] = norm(mat[i],i,num)
 
 
@@ -77,6 +76,8 @@ for i in xrange(0,num):
 print(np.round(mat,3))
 
 
-Y = tsne(mat, 2, 50, 20.0)
+Y = tsne(mat, 2, num, 20.0)
+print len(Y[:,0])
+print len(Y[:,1])
 Plot.scatter(Y[:,0], Y[:,1], 20, labels)
 Plot.show()
