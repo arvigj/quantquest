@@ -1,8 +1,8 @@
-#graph template file
-# from spacy.en import *
+# graph template file
+from spacy.en import *
 
 class Node:
-    #nlp = English()
+    nlp = English()
     def __init__(self,name):
         self.name = name
         self.link_list = {}
@@ -21,16 +21,16 @@ class Node:
                 if i==j:
                     self.neighbors[neighbor].append(i)
 
-    # def add_neighbor_industry(self,neighbor,neighbor_list):
-    #     if neighbor in self.neighbors:
-    #         return
-    #     self.neighbors[neighbor] = []
-    #     for i in self.link_list.keys():
-    #         for j in neighbor.link_list.keys():
-    #             c1 = self.nlp(unicode(i))
-    #             c2 = self.nlp(unicode(j))
-    #             if (c1.similarity(c2)) > 0.5:
-    #                 self.neighbors[neighbor].append(i)
+    def add_neighbor_industry(self,neighbor,neighbor_list):
+        if neighbor in self.neighbors:
+            return
+        self.neighbors[neighbor] = []
+        for i in self.link_list.keys():
+            for j in neighbor.link_list.keys():
+                c1 = self.nlp(unicode(i))
+                c2 = self.nlp(unicode(j))
+                if (c1.similarity(c2)) > 0.5:
+                    self.neighbors[neighbor].append(i)
     
     def get_neighbor_links(self,neighbor):
         return self.neighbors[neighbor]
