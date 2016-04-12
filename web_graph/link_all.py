@@ -52,11 +52,9 @@ for i in xrange(0,num):
 def norm(array, identity_index, arr_len):
     length = 0
     for i in xrange(0,arr_len):
-        print i
         if i == identity_index:
             continue
-        length += (array[0,i]*array[0,i])
-    length = np.sqrt(length)
+        length += array[0,i]
     for i in xrange(0,arr_len):
         if i == identity_index:
             continue
