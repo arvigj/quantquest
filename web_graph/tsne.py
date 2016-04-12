@@ -172,3 +172,4 @@ def tsne(X = Math.array([]), no_dims = 2, initial_dims = 50, perplexity = 30.0):
 #	Y = tsne(X, 2, 50, 20.0);
 #	Plot.scatter(Y[:,0], Y[:,1], 20, labels);
 #	Plot.show();
+
