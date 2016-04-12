@@ -3,6 +3,10 @@ from pprint import pprint
 import sys
 import numpy as np
 
+from tsne import tsne
+from pylab import Plot
+from numpy import Math
+
 from graph import Node, Graph
 
 matrix = []
@@ -71,3 +75,8 @@ for i in xrange(0,num):
 
 
 print(np.round(mat,3))
+
+
+Y = tsne(mat, 2, 50, 20.0)
+Plot.scatter(Y[:,0], Y[:,1], 20, labels)
+Plot.show()
