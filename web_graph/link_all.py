@@ -76,8 +76,8 @@ for i in xrange(0,num):
 print(np.round(mat,3))
 
 
-Y = tsne(mat, 2, num, 20.0)
-print len(Y[:,0])
-print len(Y[:,1])
-Plot.scatter(Y[:,0], Y[:,1], 20, labels)
-Plot.show()
+#Y = tsne(mat, 2, num, 20.0)
+#print len(Y[:,0])
+#print len(Y[:,1])
+#Plot.scatter(Y[:,0], Y[:,1], 20, labels)
+#Plot.show()
