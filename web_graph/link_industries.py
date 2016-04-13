@@ -3,8 +3,6 @@ from pprint import pprint
 import sys
 import numpy as np
 
-from tsne import tsne
-
 from graph import Node, Graph
 
 matrix = []
@@ -12,7 +10,7 @@ matrix = []
 try:
     num = int(sys.argv[2])
 except IndexError:
-    num = 500
+    num = 504
 
 with open(sys.argv[1]) as data_file:
     data = json.load(data_file)
@@ -22,7 +20,7 @@ g = Graph()
 for company in data.keys()[0:num]:
     g.add_nodes(company,data[company])
 
-g.link_all_nodes()
+g.link_all_industry()
 
 
 for i in xrange(0,num):
@@ -35,6 +33,7 @@ for i in xrange(0,num):
         matrix[i].append(len(a))
 
 mat = np.array(matrix,dtype=float)
+
 print mat
 
 #print type(mat)
@@ -61,19 +60,15 @@ def norm(array, identity_index, arr_len):
     for i in xrange(0,arr_len):
         if i == identity_index:
             continue
-        array[i] = array[i]/length
+        if length != 0:
+            array[i] = array[i]/length
     return array
 
 
 
 #insert 1's after normalization
 for i in xrange(0,num):
-    mat[i][i] = 1
+    mat[i][i]=1
     mat[i] = norm(mat[i],i,num)
 
-
-
-# print(np.round(mat,3))
-
-
-
+print(np.round(mat,3))

@@ -24,7 +24,10 @@ def cat_max(cat_entry):
     return sim_cat
 
 def check_categories(category):
-    if("Dow Jones" in  category or "New York Stock Exchange" in category or "NASDAQ" in category or "Wikidata" in category or "needing additional references" in category):
+    if("Dow Jones" in  category or "New York Stock Exchange" in category 
+        or "NASDAQ" in category or "Wikidata" in category 
+        or "needing additional references" in category
+        or "infobox" in category):
         return True
     else:
         return False
@@ -47,17 +50,26 @@ with open(sys.argv[1]) as file:
 
 pages = []
 
+numOfComp = 0
 for comp in companies:
+    print(numOfComp)
+    if(numOfComp == 4):
+        break
     try:
-        pages.append(wikipedia.page(comp))
+        if("Allergan plc" == comp):
+            pages.append(wikipedia.page("Allergan, Inc."))
+        else:
+            pages.append(wikipedia.page(comp))
     except wikipedia.exceptions.DisambiguationError:
         query = wikipedia.search(comp)
         pages.append(wikipedia.page(query[0]))
     except wikipedia.exceptions.PageError:
         pass
+    numOfComp = numOfComp + 1
 
 companies_obj = []
 for company in pages:
+    print(company.title)
     companies_obj.append(Company(company.title))
     for category in company.categories:
         # print(category)
@@ -66,11 +78,20 @@ for company in pages:
         label = cat_max(category)
         companies_obj[-1].add_parameter(label,category)
 
+compIndDic = {}
+
 # print(companies_obj[0].data)
 for each in companies_obj:
-    print(each.name)
     for values in each.data:
-        if(values == 'misc'):
-            continue
-        print(values, each.data[values])
-    print("\n")
+        if(values == 'industry'):
+            compIndDic[each.name] = each.data[values]
+
+import json
+with open('industry.json', 'r') as old_refer_files:
+    oldIndDic = json.load(old_refer_files)
+
+oldIndDic.update(compIndDic)
+
+import json
+with open('industry.json', 'w') as refer_files:
+    json.dump(oldIndDic, refer_files)
