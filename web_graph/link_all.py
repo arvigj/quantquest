@@ -73,7 +73,15 @@ for i in xrange(0,num):
 
 
 
-# print(np.round(mat,3))
+print(np.round(mat,3))
 
 
+#get direct links
+dirmat = []
+for i in xrange(0,num):
+    dirmat.append([])
+    for j in xrange(0,num):
+        dirmat[i].append(g.return_dir_link(data.keys()[i],data.keys()[j]))
+
+pprint(dirmat)
 

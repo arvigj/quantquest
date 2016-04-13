@@ -21,6 +21,8 @@ class Node:
             for j in neighbor.link_list.keys():
                 if i==j:
                     self.neighbors[neighbor].append(i)
+        if neighbor in  self.link_list.keys():
+            self.dir_links[neighbor] = 1
 
     def add_neighbor_industry(self,neighbor,neighbor_list):
         if neighbor in self.neighbors:
@@ -32,7 +34,7 @@ class Node:
                 c2 = self.nlp(unicode(j))
                 if (c1.similarity(c2)) > 0.9:
                     self.neighbors[neighbor].append(i)
-    
+
     def get_neighbor_links(self,neighbor):
         return self.neighbors[neighbor]
 
@@ -70,5 +72,19 @@ class Graph:
             return n1.link_list.keys()
         return n1.get_neighbor_links(n2)
 
+    def return_dir_link(self, node_1, node_2):
+        n2 = 0
+        for i in self.comp_list:
+            if node_1 == i.name:
+                n1 = i
+                continue
+            if node_2 == i.name:
+                n2 = i
+        if node_1 == node_2:
+            return len(n1.dir_links.keys())
+        try:
+            return n1.dir_links[node_2]
+        except KeyError:
+            return 0
 
 
