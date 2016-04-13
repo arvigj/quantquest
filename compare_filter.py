@@ -1,9 +1,13 @@
 import json
 
-with open('industry.json', 'r') as ind:
-	ind_data = json.load(ind)
+with open('time.json', 'r') as tim:
+	tim = json.load(tim)
+for each in tim:
+	print(each, tim[each])
+# with open('industry.json', 'r') as ind:
+# 	ind_data = json.load(ind)
 
-print(len(ind_data))
+# print(len(ind_data))
 
 # with open('links.json', 'r') as lin:
 # 	lin_data = json.load(lin)
