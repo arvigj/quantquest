@@ -1,6 +1,7 @@
 import numpy as np
 
 def add_matrices(matrix_list, weight_list):
+    '''insert list of matrices and a list of weights'''
     matrix = []
     for i in matrix_list[0]:
         matrix.append([])
