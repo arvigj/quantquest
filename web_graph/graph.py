@@ -7,6 +7,7 @@ class Node:
         self.name = name
         self.link_list = {}
         self.neighbors = {}
+        self.dir_links = {}
     def add_link(self,link):
         try:
             self.link_list[link] += 1
