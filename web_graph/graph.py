@@ -29,7 +29,7 @@ class Node:
             for j in neighbor.link_list.keys():
                 c1 = self.nlp(unicode(i))
                 c2 = self.nlp(unicode(j))
-                if (c1.similarity(c2)) > 0.5:
+                if (c1.similarity(c2)) > 0.9:
                     self.neighbors[neighbor].append(i)
     
     def get_neighbor_links(self,neighbor):

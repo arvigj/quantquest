@@ -3,9 +3,6 @@ from pprint import pprint
 import sys
 import numpy as np
 
-# from tsne import tsne
-# import matplotlib.pyplot as plt
-
 from graph import Node, Graph
 
 matrix = []
@@ -37,6 +34,7 @@ for i in xrange(0,num):
         matrix[i].append(len(a))
 
 mat = np.array(matrix,dtype=float)
+print mat
 
 #print type(mat)
 #print type(mat[0])
@@ -76,33 +74,7 @@ for i in xrange(0,num):
 
 print(np.round(mat,3))
 
-
 for i in xrange(0,num):
     mat[i,i] = 0
 
-
-# Y = tsne(mat, 2, num, 5)
-# print len(Y[:,0])
-# print len(Y[:,1])
-# plt.scatter(Y[:,0], Y[:,1])
-# plt.show()
-#Plot.show()
-
-
-# import matplotlib.pyplot as plt
-# import numpy as np
-# fig = plt.figure()
-# ax = fig.add_subplot(1, 1, 1)
-
-# N = num
-# x = mat[:,0]
-# print(x)
-# y = mat[:,1]
-# points = mat[:,:]
-# # color is the length of each vector in `points`
-# color = np.sqrt((points**2).sum(axis = 1))/np.sqrt(2.0)
-# rgb = plt.get_cmap('jet')(color)
-
-# ax.scatter(x, y, color = rgb)
-# plt.show()
 

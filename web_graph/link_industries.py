@@ -35,6 +35,7 @@ for i in xrange(0,num):
 
 mat = np.matrix(matrix,dtype=float)
 print(mat)
+
 #print type(mat)
 #print type(mat[0])
 #print type(mat[0][0])
@@ -42,7 +43,7 @@ print(mat)
 for i in xrange(0,num):
     for j in xrange(0,num):
         if i!=j:
-            mat[i,j] /= mat[i,i]
+            mat[i][j] /= mat[i][i]
 
 #remove 1's before normalization
 #for i in xrange(0,num):
@@ -55,18 +56,19 @@ def norm(array, identity_index, arr_len):
     for i in xrange(0,arr_len):
         if i == identity_index:
             continue
-        length += array[0,i]
+        length += array[i]
     for i in xrange(0,arr_len):
         if i == identity_index:
             continue
-        array[0,i] = array[0,i]/length
+        if length != 0:
+            array[i] = array[i]/length
     return array
 
 
 
 #insert 1's after normalization
 for i in xrange(0,num):
-    mat[i,i] = 1
+    mat[i][i]=1
     mat[i] = norm(mat[i],i,num)
 
 print(np.round(mat,3))
