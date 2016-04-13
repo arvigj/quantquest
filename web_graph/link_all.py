@@ -3,8 +3,8 @@ from pprint import pprint
 import sys
 import numpy as np
 
-from tsne import tsne
-import matplotlib.pyplot as plt
+# from tsne import tsne
+# import matplotlib.pyplot as plt
 
 from graph import Node, Graph
 
@@ -13,11 +13,12 @@ matrix = []
 try:
     num = int(sys.argv[2])
 except IndexError:
-    num = 500
+    num = 504
 
 with open(sys.argv[1]) as data_file:
     data = json.load(data_file)
 
+print(len(data))
 g = Graph()
 
 for company in data.keys()[0:num]:
@@ -73,18 +74,18 @@ for i in xrange(0,num):
 
 
 
-# print(np.round(mat,3))
+print(np.round(mat,3))
 
 
 for i in xrange(0,num):
     mat[i,i] = 0
 
 
-Y = tsne(mat, 2, num, 5)
-print len(Y[:,0])
-print len(Y[:,1])
-plt.scatter(Y[:,0], Y[:,1])
-plt.show()
+# Y = tsne(mat, 2, num, 5)
+# print len(Y[:,0])
+# print len(Y[:,1])
+# plt.scatter(Y[:,0], Y[:,1])
+# plt.show()
 #Plot.show()
 
 

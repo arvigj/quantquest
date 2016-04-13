@@ -10,11 +10,12 @@ matrix = []
 try:
     num = int(sys.argv[2])
 except IndexError:
-    num = 500
+    num = 504
 
 with open(sys.argv[1]) as data_file:
     data = json.load(data_file)
 
+print(len(data))
 g = Graph()
 
 for company in data.keys()[0:num]:
@@ -33,7 +34,7 @@ for i in xrange(0,num):
         matrix[i].append(len(a))
 
 mat = np.matrix(matrix,dtype=float)
-
+print(mat)
 #print type(mat)
 #print type(mat[0])
 #print type(mat[0][0])
