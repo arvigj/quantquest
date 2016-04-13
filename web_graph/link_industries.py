@@ -33,9 +33,9 @@ for i in xrange(0,num):
             a = []
         matrix[i].append(len(a))
 
-mat = np.matrix(matrix,dtype=float)
-print(mat)
 
+mat = np.array(matrix,dtype=float)
+print mat
 #print type(mat)
 #print type(mat[0])
 #print type(mat[0][0])
