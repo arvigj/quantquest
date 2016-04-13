@@ -3,8 +3,6 @@ from pprint import pprint
 import sys
 import numpy as np
 
-from tsne import tsne
-
 from graph import Node, Graph
 
 matrix = []
@@ -12,11 +10,12 @@ matrix = []
 try:
     num = int(sys.argv[2])
 except IndexError:
-    num = 500
+    num = 504
 
 with open(sys.argv[1]) as data_file:
     data = json.load(data_file)
 
+print(len(data))
 g = Graph()
 
 for company in data.keys()[0:num]:
@@ -75,6 +74,8 @@ for i in xrange(0,num):
 
 print(np.round(mat,3))
 
+for i in xrange(0,num):
+    mat[i,i] = 0
 
 #get direct links
 dirmat = []

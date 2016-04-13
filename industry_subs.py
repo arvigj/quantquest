@@ -1,7 +1,11 @@
-import wikipedia
+
+import bs4
+from bs4 import BeautifulSoup
+import urllib2
 from spacy.en import English
 from Company import Company
 import sys
+import wikipedia
 
 #function to get category max
 def cat_max(cat_entry):
@@ -44,42 +48,59 @@ base['misc'] = []
 companies = []
 nlp = English()
 
-with open(sys.argv[1]) as file:
-    for line in file.readlines():
-        companies.append(line)
+############################################
 
-pages = []
+wiki = "https://en.wikipedia.org/w/index.php?title=List_of_S%26P_500_companies&oldid=697200065"
+page = urllib2.urlopen(wiki)
+soup = BeautifulSoup(page, "html.parser")
+table = soup.find("table", { "class" : "wikitable sortable" })
 
-numOfComp = 0
-for comp in companies:
-    print(numOfComp)
+allNames = []
+numberOfCompanies = 0
+i = 1
+
+values = table.findAll("td")
+while(numberOfCompanies < 510):
     try:
-        pages.append(wikipedia.page(comp))
+        allNames.append(values[i].text)
+    except:
+        pass
+    i += 8
+    numberOfCompanies += 1
+
+counter = 0
+dicRef = {}
+
+for each in allNames:
+    dicRef[each] = []
+
+companies_pages = []
+for each in allNames:
+    try:
+        page = wikipedia.page(each)
+        companies_pages.append(page)
     except:
         try:
-            query = wikipedia.search(comp)
-            pages.append(wikipedia.page(query[0]))
+            a = wikipedia.search(each)
+            page = wikipedia.page(a[0])
+            companies_pages.append(page)
         except:
-            print(comp)
-            pages.append(wikipedia.page("List of S&P 500 companies"))
+            companies_pages.append("NA")
+    counter = counter + 1
 
-    # except wikipedia.exceptions.PageError:
-    #     query = wikipedia.search(comp)
-    #     pages.append(wikipedia.page(query[0]))
-    numOfComp += 1
-print(len(pages))
+print(len(companies_pages))
 
 companies_obj = []
-for company in pages:
-    #print(company.title)
-    companies_obj.append(Company(company.title))
-    for category in company.categories:
-        # print(category)
+for i in range(0, 504, 1):
+    companies_obj.append(Company(allNames[i]))
+    comp_cats = companies_pages[i].categories
+    for category in comp_cats:
         if(check_categories(category)):
            continue
         label = cat_max(category)
-        companies_obj[-1].add_parameter(label,category)
+        companies_obj[-1].add_parameter(label,category)  
 
+print(len(companies_obj))
 compIndDic = {}
 
 # print(companies_obj[0].data)
@@ -88,12 +109,10 @@ for each in companies_obj:
         if(values == 'industry'):
             compIndDic[each.name] = each.data[values]
 
-# import json
-# with open('industry.json', 'r') as old_refer_files:
-#     oldIndDic = json.load(old_refer_files)
-
-# oldIndDic.update(compIndDic)
-
+print(compIndDic)
 import json
 with open('industry.json', 'w') as refer_files:
     json.dump(compIndDic, refer_files)
+
+
+
