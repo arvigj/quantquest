@@ -38,9 +38,10 @@ with open('employees.json', 'w') as emp_fi:
 	json.dump(employeesRe, emp_fi)
 
 # my_string = str(all_urls[0]).strip()
-# url = "https://en.wikipedia.org"+my_string
-# print(url)
+# from lxml import etree
+# import requests
+# url = "https://en.wikipedia.org/wiki/Amazon.com"
 # r = requests.get(url)
 # doc = etree.fromstring(r.text)
-# e = doc.xpath('//table[@class="infobox vcard"]/tr[th/div/text()="Number of employees"]/td')
+# e = doc.xpath('//table[@class="infobox vcard"]/tr[th/div/text()="Employees  "]/td')
 # print(e[0].text)

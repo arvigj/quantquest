@@ -2,7 +2,6 @@ import json
 from pprint import pprint
 import sys
 import numpy as np
-
 from graph import Node, Graph
 
 matrix = []
@@ -36,19 +35,11 @@ for i in xrange(0,num):
 mat = np.array(matrix,dtype=float)
 print mat
 
-#print type(mat)
-#print type(mat[0])
-#print type(mat[0][0])
 
 for i in xrange(0,num):
     for j in xrange(0,num):
         if i!=j:
             mat[i][j] /= mat[i][i]
-
-#remove 1's before normalization
-#for i in xrange(0,num):
-#    mat[i,i] = 0
-
 
 #normalize
 def norm(array, identity_index, arr_len):
@@ -63,26 +54,10 @@ def norm(array, identity_index, arr_len):
         array[i] = array[i]/length
     return array
 
-
-
 #insert 1's after normalization
 for i in xrange(0,num):
     mat[i][i] = 1
     mat[i] = norm(mat[i],i,num)
 
-
-
 print(np.round(mat,3))
-
-for i in xrange(0,num):
-    mat[i,i] = 0
-
-#get direct links
-dirmat = []
-for i in xrange(0,num):
-    dirmat.append([])
-    for j in xrange(0,num):
-        dirmat[i].append(g.return_dir_link(data.keys()[i],data.keys()[j]))
-
-pprint(dirmat)
 
