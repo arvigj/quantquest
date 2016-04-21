@@ -63,6 +63,8 @@ def get_industry_matrix(nameOfFile, size):
 	        if i == identity_index:
 	            continue
 	        length += array[i]
+            if length == 0:
+                return array
 	    for i in xrange(0,arr_len):
 	        if i == identity_index:
 	            continue
@@ -140,6 +142,8 @@ def get_linkage_matrix(nameOfFile, size):
 	        if i == identity_index:
 	            continue
 	        length += array[i]
+            if length == 0:
+                return array
 	    for i in xrange(0,arr_len):
 	        if i == identity_index:
 	            continue
