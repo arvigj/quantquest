@@ -48,6 +48,8 @@ def norm(array, identity_index, arr_len):
         if i == identity_index:
             continue
         length += array[i]
+    if length == 0:
+        return array
     for i in xrange(0,arr_len):
         if i == identity_index:
             continue
