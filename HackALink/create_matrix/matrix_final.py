@@ -11,6 +11,23 @@ in accordance to their industries. We use nlp techniques in order to
 create the links between similar industries and weigh them according
 to the logic dicussed in our write up.
 '''
+
+#normalize to get the value to be a perfect 100%
+def norm(array, identity_index, arr_len):
+    length = 0
+    for i in xrange(0,arr_len):
+        if i == identity_index:
+            continue
+        length += array[i]
+	if length == 0:
+		return array
+    for i in xrange(0,arr_len):
+        if i == identity_index:
+            continue
+        if length != 0:
+            array[i] = array[i]/length
+    return array
+
 def get_industry_matrix(nameOfFile, size):
 	matrix = []
 	try:
@@ -57,26 +74,11 @@ def get_industry_matrix(nameOfFile, size):
 				if(mat[i][i] != 0):
 					mat[i][j] /= mat[i][i]
 
-	#normalize to get the value to be a perfect 100%
-	def norm(array, identity_index, arr_len):
-	    length = 0
-	    for i in xrange(0,arr_len):
-	        if i == identity_index:
-	            continue
-	        length += array[i]
-		if length == 0:
-			return array
-	    for i in xrange(0,arr_len):
-	        if i == identity_index:
-	            continue
-	        if length != 0:
-	            array[i] = array[i]/length
-	    return array
 
+	
 	for i in xrange(0,num):
 	    mat[i][i]=1
 	    mat[i] = norm(mat[i],i,num)
-
 	#mat = (np.round(mat,3))
 
 	#Giving the value a 40% percent for the final matrix
@@ -137,20 +139,20 @@ def get_linkage_matrix(nameOfFile, size):
 				if mat[i][i] != 0:
 					mat[i][j] /= mat[i][i]
 
-	#normalize
-	def norm(array, identity_index, arr_len):
-	    length = 0
-	    for i in xrange(0,arr_len):
-	        if i == identity_index:
-	            continue
-	        length += array[i]
-            if length == 0:
-                return array
-	    for i in xrange(0,arr_len):
-	        if i == identity_index:
-	            continue
-	        array[i] = array[i]/length
-	    return array
+	# #normalize
+	# def norm(array, identity_index, arr_len):
+	# 	length = 0
+	# 	for i in xrange(0,arr_len):
+	# 	    if i == identity_index:
+	# 	        continue
+	# 	    length += array[i]
+	# 	if length == 0:
+	# 		return array
+	# 	for i in xrange(0,arr_len):
+	# 	    if i == identity_index:
+	# 	        continue
+	# 	    array[i] = array[i]/length
+	# 	return array
 
 	#insert 1's after normalization
 	for i in xrange(0,num):
