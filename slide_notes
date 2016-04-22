@@ -1,0 +1,68 @@
+Tanvi Gala, Arvi Gjoka, Brandon Johnson, Rishabh Ranawat
+HackALink
+Goldman Sachs Quant Quest
+Presentation
+********************************************************
+
+INTRODUCTION
+============
+	1. Importance of Data Science in Investment Banking
+		+ Rising need to structure unstructured data
+		+ To better understand the sentiment of companies
+		+ Utlize data science techniques for pattern recognition
+		+ Understand the customers better
+		+ Attempt finding patterns that would help identify frauds
+
+	2. Why build a matrix?
+		+ Gain some insight into the S&P 500 without looking at strucutred data sources
+		+ Portfolio Diversification Matrix
+		+ How accurate is the data that is available on wikipedia which is one of the most widely used to-go source of information
+
+	
+METHODOLOGY/APPROACH/MODEL
+==========================
+	DATA MINING
+	1. General Approach
+		+ Strength of the matrix in 2 parameters - Hyperlinks and Industry/Sub-Industry categories
+		//Decription of Each Factor
+		+ Linkage
+			* Explanation of Page Rank
+			* Looking at each company in singularity the links that are going out of the page give us most information
+			* Take a screenshot and explain what you mean
+		+ Industry & Sub-Industry
+			* Explain how this essentially helps us narrow down the categories
+			* Explain how it is not just "industries" in the broad sense but it gets rather specific
+			* Take a screenshot and give example
+
+	2. Technical Appraoch
+		+ Links
+			* We used the wikipedia api to get all the links that were going out from each of the pages
+			* Essentially, iterated over all the pages for this
+			* Stored the data in dictionaries so that lookup time reduces and efficiency increases when building the logic
+		+ Industry
+			* We try to get these details from the categories of each of the companies.
+			* We are not looking for specific details of the company such as sub industries as well.
+			* Give example - (Nanotechnology falls under Technology but it is still included)
+
+	DATA LOGIC
+	1. General Appraoch
+		+ Explanation of the Graph Model
+			* Explain the Algorithm
+
+
+	2. Technical Appraoch
+		+ Links
+			* We check for matches between each of the two companies
+			* This is a simple iterative check - as the link names would not require any hardcore NLP (just to save up)
+			  on time and efficiency
+			* Apply the graph model
+			* Give an example (diagram/draw)
+		+ Industry
+			* Usage of NLP (This part is highly time consuming)
+			* Comparing the industry names for each of the companies by using semantic analysis
+			* We used semantic analysis here because not all industries are "exactly" the same but
+			  there is a strong similarity relation between "nanotechnology" company and a "technology" company
+
+RESULTS
+=======
+

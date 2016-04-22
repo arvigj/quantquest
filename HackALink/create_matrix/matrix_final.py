@@ -54,7 +54,8 @@ def get_industry_matrix(nameOfFile, size):
 	for i in xrange(0,num):
 	    for j in xrange(0,num):
 	        if i!=j:
-	            mat[i][j] /= mat[i][i]
+				if(mat[i][i] != 0):
+					mat[i][j] /= mat[i][i]
 
 	#normalize to get the value to be a perfect 100%
 	def norm(array, identity_index, arr_len):
@@ -63,8 +64,8 @@ def get_industry_matrix(nameOfFile, size):
 	        if i == identity_index:
 	            continue
 	        length += array[i]
-            if length == 0:
-                return array
+		if length == 0:
+			return array
 	    for i in xrange(0,arr_len):
 	        if i == identity_index:
 	            continue
@@ -76,7 +77,7 @@ def get_industry_matrix(nameOfFile, size):
 	    mat[i][i]=1
 	    mat[i] = norm(mat[i],i,num)
 
-	mat = (np.round(mat,3))
+	#mat = (np.round(mat,3))
 
 	#Giving the value a 40% percent for the final matrix
 	mat = np.multiply(mat, 0.4)
@@ -133,7 +134,8 @@ def get_linkage_matrix(nameOfFile, size):
 	for i in xrange(0,num):
 	    for j in xrange(0,num):
 	        if i!=j:
-	            mat[i][j] /= mat[i][i]
+				if mat[i][i] != 0:
+					mat[i][j] /= mat[i][i]
 
 	#normalize
 	def norm(array, identity_index, arr_len):
@@ -155,7 +157,7 @@ def get_linkage_matrix(nameOfFile, size):
 	    mat[i][i] = 1
 	    mat[i] = norm(mat[i],i,num)
 
-	mat = np.round(mat,3)
+	#mat = np.round(mat,3)
 	mat = np.multiply(mat, 0.6)
 	return mat
 
